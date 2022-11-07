@@ -5,7 +5,7 @@ import PostForm from './pages/PostForm';
 function App() {
   return (
     <div className='bg-neutral-900 h-screen flex items-center'>
-    <div className='bg-white px-20px m-auto text-sm'>
+    <div className=' px-20px m-auto text-sm'>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<HomePage />} />

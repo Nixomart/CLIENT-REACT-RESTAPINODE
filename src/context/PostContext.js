@@ -9,15 +9,16 @@ export const usePost = () => {
 };
 
 export const PostProvider = ({ children }) => {
-  const [post, setPost] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
-    const posts = await getPostRequest();
+    const res = await getPostRequest();
+    setPosts(res.data)
   };
 
 
   return (
-    <postContext.Provider value={{ getPosts, setPost   }}>
+    <postContext.Provider value={{ posts, getPosts  }}>
       {children}
     </postContext.Provider>
   );
