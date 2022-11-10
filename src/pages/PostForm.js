@@ -9,7 +9,8 @@ import * as Yup from "yup";
 export default function PostForm() {
   const [post, setPost] = useState({
     title: "",
-    description: ""
+    description: "",
+    image: null
   })
 
 
@@ -42,8 +43,9 @@ export default function PostForm() {
           //values obtiene los valores de los field
           //condicional para ver si es para actualizar o para guardar
           //si existe el id en la url etc..
-          if(params.id){
-            const res = await updatePost(params.id, values)
+         
+           if(params.id){
+            await updatePost(params.id, values)
           }else{
             await newPost(values)
           }
@@ -53,7 +55,8 @@ export default function PostForm() {
         enableReinitialize  
       >
         {/*  funcion {()=>()} y se desectructura para recibir la funcion handlesubmit*/}
-        {({ handleSubmit }) => (
+        {/* setFieldValue Es porque Formik no puede setear los campos de tipo field*/}
+        {({ handleSubmit, setFieldValue }) => (
           <Form 
           className="bg-gray-300 px-6 py-6 flex flex-col"
           onSubmit={handleSubmit}>
@@ -77,6 +80,15 @@ export default function PostForm() {
               component={"p"}
               name="description"
             />
+
+            {/* labael para la subida de imagenes */}
+            <label htmlFor="image"></label>
+            
+            <input 
+            type={'file'} 
+            name='image'
+            onChange={(e) =>setFieldValue('image',e.target.files[0])}/>
+
             <button 
             className="bg-gray-600 text-white w-1/2"
             type="submit">Guardar</button>

@@ -48,6 +48,7 @@ export default function ({ post }) {
     <div className="bg-slate-300 mx-6 my-2 px-3 py-3 text-black">
       <h3 className="text-center">{post.title}</h3>
       <p className="text-center">{post.description}</p>
+      {post.image && <img src={post.image.url} />}
       <div className="flex justify-center justify-evenly mt-6">
         <button
           className="bg-red-500 text-white p-3"

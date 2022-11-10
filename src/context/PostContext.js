@@ -21,6 +21,7 @@ export const PostProvider = ({ children }) => {
   const newPost = async (post) => {
     const res = await createPostRequest(post);
     //setea el estado con los post anterior y agrega el nuevo desde el res.data
+    console.log('res from context', res)
     setPosts([...posts, res.data]);
   };
 
