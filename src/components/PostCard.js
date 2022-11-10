@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { usePost } from "../context/PostContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ({ post }) {
-  const { deletePost } = usePost();
 
+  const { deletePost } = usePost();
+  const navigate = useNavigate()
   const handleDelete = (id) => {
     toast(
       (t) => (
@@ -53,7 +55,8 @@ export default function ({ post }) {
         >
           borrar
         </button>
-        <button className="bg-green-600 text-white p-3">editarr</button>
+        <button className="bg-green-600 text-white p-3" 
+        onClick={()=> navigate('/posts/'+post._id)}>editarr</button>
       </div>
     </div>
   );

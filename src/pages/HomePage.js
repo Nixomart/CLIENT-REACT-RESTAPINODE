@@ -15,7 +15,6 @@ export default function HomePage() {
         <Link to={"/newPost"}>Agrega uno.</Link>
       </div>
     );
-  console.log("posts", posts);
   return (
 
 
@@ -26,7 +25,7 @@ export default function HomePage() {
       
       <div className="grid grid-cols-3 grid-rows-3 gap-4">
         {posts.map((post) => (
-          <PostCard post={post} key={post._id} />
+          <PostCard id={post._id} key={post._id} post={post}  />
         ))}
       </div>
     </div>

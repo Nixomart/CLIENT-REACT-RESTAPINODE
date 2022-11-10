@@ -3,6 +3,8 @@ import {
   createPostRequest,
   deletePostRequest,
   getPostRequest,
+  getPostsRequest,
+  updatePostRequest,
 } from "../api/posts";
 
 const postContext = createContext();
@@ -29,18 +31,31 @@ export const PostProvider = ({ children }) => {
     setPosts(posts.filter((post) => post._id !== id));
   };
 
-  //OBTENER POST
+  //OBTENER POSTS
   const getPosts = async () => {
-    const res = await getPostRequest();
+    const res = await getPostsRequest();
     setPosts(res.data);
   };
+
+  //OBTENER POST POR ID
+  const getPost = async (id) => {
+    const res = await getPostRequest(id);
+    return res.data;
+  };
+
+  //ACTUALIZAR POST
+  const updatePost = async(id, post) =>{
+    const res = await updatePostRequest(id, post)
+    /* console.log('res', res) */
+    setPosts(posts.map((post) => (post._id === id ? res.data : post)))
+  }
 
   useEffect(() => {
     getPosts();
   }, []);
 
   return (
-    <postContext.Provider value={{ posts, newPost, deletePost }}>
+    <postContext.Provider value={{ posts, newPost, deletePost, getPost, updatePost }}>
       {children}
     </postContext.Provider>
   );
