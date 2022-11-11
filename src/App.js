@@ -6,7 +6,7 @@ import PostForm from './pages/PostForm';
 import {Toaster} from 'react-hot-toast'
 function App() {
   return (
-    <div className='bg-neutral-900'>
+    <div className='bg-neutral-100 h-screen'>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<HomePage />} />
