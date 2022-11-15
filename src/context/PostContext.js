@@ -21,7 +21,6 @@ export const PostProvider = ({ children }) => {
   const newPost = async (post) => {
     const res = await createPostRequest(post);
     //setea el estado con los post anterior y agrega el nuevo desde el res.data
-    console.log('res from context', res)
     setPosts([...posts, res.data]);
   };
 
@@ -34,21 +33,34 @@ export const PostProvider = ({ children }) => {
 
   //OBTENER POSTS
   const getPosts = async () => {
-    const res = await getPostsRequest();
-    setPosts(res.data);
+    try {
+      const res = await getPostsRequest();
+      setPosts(res.data);
+    } catch (error) {
+  console.log('error', error)      
+    }
   };
 
   //OBTENER POST POR ID
   const getPost = async (id) => {
-    const res = await getPostRequest(id);
+    try {
+      const res = await getPostRequest(id);
     return res.data;
+    } catch (error) {
+      console.log('error', error)
+    }
   };
 
   //ACTUALIZAR POST
   const updatePost = async(id, post) =>{
-    const res = await updatePostRequest(id, post)
-    /* console.log('res', res) */
-    setPosts(posts.map((post) => (post._id === id ? res.data : post)))
+    try {
+      const res = await updatePostRequest(id, post)
+      /* console.log('res', res) */
+      setPosts(posts.map((post) => (post._id === id ? res.data : post)))
+      
+    } catch (error) {
+      console.log('error', error)
+    }
   }
 
   useEffect(() => {

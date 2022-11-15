@@ -17,11 +17,9 @@ export default function HomePage() {
     );
   return (
 
-
-    <div className="text-white w-auto ">
+    <div className="text-black w-auto ">
 
       <Link to={"/newPost"}>Crea una nueva publi</Link>
-      
       
       <div className="grid grid-cols-3 grid-rows-3 gap-4">
         {posts.map((post) => (
